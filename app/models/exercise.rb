@@ -3,7 +3,6 @@
 class Exercise < ApplicationRecord
   strip_attributes
 
-  has_many :exercises_muscle_groups
-  has_many :muscle_groups, through: :exercises_muscle_groups
-  validates :name, presence: true
+  belongs_to :muscle_group
+  validates :name, presence: true, uniqueness: true
 end

@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe MuscleGroup, type: :model do
+  subject { create(:muscle_group) }
+
   it { should validate_presence_of(:name) }
-  it { should have_many(:exercises).through(:exercises_muscle_groups) }
+  it { should validate_uniqueness_of(:name) }
 end

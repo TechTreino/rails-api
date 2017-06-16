@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170616035420) do
+ActiveRecord::Schema.define(version: 20170616033837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,23 +49,19 @@ ActiveRecord::Schema.define(version: 20170616035420) do
 
   create_table "exercises", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "exercises_muscle_groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "exercise_id"
     t.uuid "muscle_group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["exercise_id"], name: "index_exercises_muscle_groups_on_exercise_id"
-    t.index ["muscle_group_id"], name: "index_exercises_muscle_groups_on_muscle_group_id"
+    t.index ["muscle_group_id"], name: "index_exercises_on_muscle_group_id"
+    t.index ["name"], name: "index_exercises_on_name", unique: true
   end
 
   create_table "muscle_groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_muscle_groups_on_name", unique: true
   end
 
-  add_foreign_key "exercises_muscle_groups", "exercises"
-  add_foreign_key "exercises_muscle_groups", "muscle_groups"
+  add_foreign_key "exercises", "muscle_groups"
 end
