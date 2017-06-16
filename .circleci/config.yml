@@ -2,6 +2,11 @@ version: 2
 jobs:
   build:
     working_directory: ~/techtreino-api
+    docker:
+      - image: circleci/ruby:2.4.1-node
+        environment:
+          RAILS_ENV: test
+      - image: circleci/postgres:9.6.3-alpine
     steps:
       - checkout
 
