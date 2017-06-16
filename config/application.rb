@@ -43,5 +43,8 @@ module TechtreinoApi
     config.generators do |g|
       g.orm :active_record, primary_key_type: :uuid
     end
+
+    # Makes paper_trail work
+    config.active_record.belongs_to_required_by_default = false
   end
 end

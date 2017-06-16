@@ -5,7 +5,13 @@ class ApplicationController < ActionController::API
 
   before_action :authenticate_customer!, except: :index
 
+  def user_for_paper_trail
+    current_customer
+  end
+
   def index
+    a = MuscleGroup.new(name: 'blau')
+    a.save!
     render plain: 'Techtreino API'
   end
 end
