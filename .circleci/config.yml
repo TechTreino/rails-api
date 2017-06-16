@@ -36,10 +36,18 @@ jobs:
                             --format progress \
                             $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
 
-      # Save artifacts
+      - run: bash .circleci/setup-heroku.sh
+
       - type: store_test_results
         path: /tmp/test-results
 
       - store_artifacts:
-          path: /coverage/index.html
+          path: coverage/index.html
           destination: coverage.html
+
+      - deploy:
+          name: Deploy to heroku
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              bash .circleci/deploy.sh
+            fi

@@ -3,9 +3,9 @@
 class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
 
-  before_action :authenticate_customer!
+  before_action :authenticate_customer!, except: :index
 
   def index
-    render html: 'Hello!'
+    render plain: 'Techtreino API'
   end
 end
