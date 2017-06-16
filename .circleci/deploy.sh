@@ -2,6 +2,7 @@
 set -e
 mkdir -p ${HOME}/lib ${HOME}/bin
 curl -sSL https://raw.githubusercontent.com/codeship/scripts/master/utilities/check_url.sh > ${HOME}/bin/check_url && chmod u+x ${HOME}/bin/check_url
+export PATH=$PATH:${HOME}/bin
 
 echo "${HEROKU_SSH_KEY}" >> ~/.ssh/known_hosts
 echo "${HEROKU_PRIVATE_SSH_KEY}" >> ~/.ssh/id_rsa
@@ -17,4 +18,4 @@ heroku maintenance:off --app ${APP_NAME}
 # restart dynos
 heroku restart --app ${APP_NAME}
 # check if the app is up and running
-${HOME}/bin/check_url https://techtreino-api.herokuapp.com/
+check_url https://techtreino-api.herokuapp.com/
