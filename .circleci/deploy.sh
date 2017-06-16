@@ -11,10 +11,10 @@ git push heroku master
 # Turn on Heroku maintenance mode and stop workers
 heroku maintenance:on --app ${APP_NAME}
 # run migrations and update static content
-heroku_run rake db:migrate "${APP_NAME}"
+heroku run rake db:migrate --app "${APP_NAME}"
 # Turn off Heroku maintenance mode and scale workers back up
 heroku maintenance:off --app ${APP_NAME}
 # restart dynos
 heroku restart --app ${APP_NAME}
 # check if the app is up and running
-check_url "https://techtreino-api.herokuapp.com/"
+${HOME}/bin/check_url https://techtreino-api.herokuapp.com/
