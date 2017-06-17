@@ -1,5 +1,5 @@
 # techtreino-api
-[![CircleCI](https://circleci.com/gh/wagoid/techtreino-api.svg?style=svg)](https://circleci.com/gh/wagoid/techtreino-api)
+[![CircleCI](https://circleci.com/gh/wagoid/techtreino-api.svg?style=svg&circle-token=8e0b960a4b7d64f929cf4301d580e140044ffdec)](https://circleci.com/gh/wagoid/techtreino-api)
 
 Techtreino-api is a rails API application
 
