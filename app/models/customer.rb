@@ -8,4 +8,10 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
+  before_create :skip_duplicate_devise_confirmation_email
+
+  # Fixes problem with duplicate account confirmation emails
+  def skip_duplicate_devise_confirmation_email
+    skip_confirmation_notification!
+  end
 end
