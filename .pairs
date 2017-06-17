@@ -1,0 +1,10 @@
+# .pairs - configuration for 'git pair'
+pairs:
+  # <initials>: <Firstname> <Lastname>[; <email-id>]
+  ss: Stanley Sathler; StanleySathler
+  ws: Wagner Santos; wagoid
+
+email:
+  prefix: team
+  domain: gitpair.com
+  no_solo_prefix: true
