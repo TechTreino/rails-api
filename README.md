@@ -50,7 +50,6 @@ Deployment is handled automatically by CI, which pushes everything to heroku and
 
 * PORT
   * Required in production, uses default for other environments
-  * Defaults to 3000
 * SECRET_KEY_BASE
   * Required in production, uses default for other environments
 * SMTP_USER_NAME
