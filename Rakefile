@@ -5,4 +5,19 @@
 
 require_relative 'config/application'
 
+task :default => %i[style tests]
+
+task :style => ['style:server']
+task :tests => ['spec:server']
+
+namespace :spec do
+  task :server => [:spec]
+end
+
+namespace :style do
+  task :server do
+    sh 'rubocop'
+  end
+end
+
 Rails.application.load_tasks
