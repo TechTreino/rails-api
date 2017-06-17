@@ -65,5 +65,13 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
+  config.render_views = true
+
+  config.before do |example|
+    if example.metadata[:type] == :controller
+      described_class.skip_before_action :authenticate_customer!, raise: false
+    end
+  end
+
   Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |file| require file }
 end

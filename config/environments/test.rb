@@ -42,4 +42,7 @@ Rails.application.configure do
 
   # Disable paper_trail when testing
   config.paper_trail.enabled = false
+
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.perform_deliveries = false
 end
