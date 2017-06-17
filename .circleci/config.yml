@@ -42,8 +42,8 @@ jobs:
         path: /tmp/test-results
 
       - store_artifacts:
-          path: coverage/index.html
-          destination: coverage.html
+          path: coverage
+          destination: coverage
 
       - deploy:
           name: Deploy to heroku
