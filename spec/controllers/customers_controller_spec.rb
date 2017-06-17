@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require_relative './controller_helper'
 
 RSpec.describe CustomersController, type: :controller do
   describe 'index' do

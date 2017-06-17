@@ -56,4 +56,6 @@ Deployment is handled automatically by CI, which pushes everything to heroku and
   * Required for production environment
 * SMTP_PASSWORD
   * Required for production environment
+* APP_URL
+  * Required for production environment
 
