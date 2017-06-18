@@ -46,5 +46,9 @@ module TechtreinoApi
 
     # Makes paper_trail work
     config.active_record.belongs_to_required_by_default = false
+
+    # Set default language to portuguese
+    config.i18n.default_locale = :pt
+    config.i18n.fallbacks = [:en]
   end
 end
