@@ -5,10 +5,10 @@ class CustomersController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @view = OpenStruct.new(customers: Customer.all)
+    @view = OpenStruct.new(customers: Customer.by_client.all)
   end
 
   def show
-    @view = OpenStruct.new(customer: Customer.find(params[:id]))
+    @view = OpenStruct.new(customer: Customer.by_client.find(params[:id]))
   end
 end

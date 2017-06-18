@@ -70,6 +70,12 @@ RSpec.configure do |config|
   config.render_views = true
 
   config.before do |example|
+    RequestStore.clear!
+
+    if example.metadata[:type] == :controller && !example.metadata[:skip_login]
+      authenticate_customer
+    end
+
     if example.metadata[:type] == :controller
       described_class.skip_before_action :authenticate_customer!, raise: false
     end

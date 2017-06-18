@@ -29,7 +29,9 @@ jobs:
 
       # Run rspec in parallel
       - type: shell
+        name: Rubocop and specs
         command: |
+          bundle exec rubocop
           bundle exec rspec --profile 10 \
                             --format RspecJunitFormatter \
                             --out /tmp/test-results/rspec.xml \
