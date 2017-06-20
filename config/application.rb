@@ -49,6 +49,7 @@ module TechtreinoApi
 
     # Set default language to portuguese
     config.i18n.default_locale = :pt
+    config.i18n.available_locales = %i[en pt]
     config.i18n.fallbacks = [:en]
   end
 end
