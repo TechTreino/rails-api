@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Customer < ApplicationRecord
+class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
   include ScopedToClient
 

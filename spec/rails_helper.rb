@@ -73,11 +73,11 @@ RSpec.configure do |config|
     RequestStore.clear!
 
     if example.metadata[:type] == :controller && !example.metadata[:skip_login]
-      authenticate_customer
+      authenticate_user
     end
 
     if example.metadata[:type] == :controller
-      described_class.skip_before_action :authenticate_customer!, raise: false
+      described_class.skip_before_action :authenticate_user!, raise: false
     end
   end
 

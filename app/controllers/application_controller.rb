@@ -3,16 +3,16 @@
 class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
   before_action :set_paper_trail_whodunnit
-  before_action :set_current_customer
+  before_action :set_current_user
   rescue_from ActiveRecord::RecordNotFound, with: :response_for_record_not_found
   rescue_from ActionController::RoutingError, with: :response_for_route_not_found
 
   def user_for_paper_trail
-    current_customer
+    current_user
   end
 
-  def set_current_customer
-    RequestStore.store[:current_customer] ||= current_customer
+  def set_current_user
+    RequestStore.store[:current_user] ||= current_user
   end
 
   def response_for_record_not_found(ex)

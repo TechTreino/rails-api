@@ -5,17 +5,17 @@ module ControllerSpecHelper
     @json_response ||= JSON.parse(response.body).with_indifferent_access
   end
 
-  def create_authenticated_customer
-    customer = FactoryGirl.create(:customer)
-    customer.confirm
-    customer
+  def create_authenticated_user
+    user = FactoryGirl.create(:user)
+    user.confirm
+    user
   end
 
-  def authenticate_customer
-    allow(subject).to receive(:current_customer).and_return(current_customer)
+  def authenticate_user
+    allow(subject).to receive(:current_user).and_return(current_user)
   end
 
-  def current_customer
-    @current_customer ||= create_authenticated_customer
+  def current_user
+    @current_user ||= create_authenticated_user
   end
 end

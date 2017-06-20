@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  mount_devise_token_auth_for 'Customer', at: 'auth', controllers: {
+  mount_devise_token_auth_for 'User', at: 'auth', controllers: {
     confirmations:      'devise_token_auth/confirmations',
     passwords:          'devise_token_auth/passwords',
     omniauth_callbacks: 'devise_token_auth/omniauth_callbacks',
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   root to: 'application#index'
 
-  resources :customers, only: %i[index show]
+  resources :users, only: %i[index show]
 
   match '*', to: 'application#route_not_found', via: %i[get post put patch delete]
 end

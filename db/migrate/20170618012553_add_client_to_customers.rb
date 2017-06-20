@@ -1,5 +1,5 @@
 class AddClientToCustomers < ActiveRecord::Migration[5.1]
   def change
-    add_reference :customers, :client, foreign_key: true, type: :uuid
+    add_reference :users, :client, foreign_key: true, type: :uuid
   end
 end
