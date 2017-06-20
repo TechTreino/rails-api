@@ -11,6 +11,7 @@ class EndpointAuthorization
     %i[sessions new] => '*',
     %i[sessions create] => '*',
     %i[sessions destroy] => '*',
+    %i[application index] => '*',
     %i[token_validations validate_token] => '*',
     %i[users index] => [:client_admin],
     %i[users show] => [:client_admin]
