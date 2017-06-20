@@ -5,3 +5,22 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+def generate_seed_data_for_development
+  puts '  BEGIN: Generating seed data for development environments'
+
+  FactoryGirl.create(:client) unless Client.any?
+  FactoryGirl.create(
+    :user,
+    first_name: 'Admin',
+    last_name: 'Cabuloso',
+    email: 'admin@techtreino.com',
+    password: '123456',
+    roles: [:client_admin, :system_admin],
+    client: Client.order(:created_at).first
+  ) unless User.any?
+
+  puts '  END: Generating seed data for development environments'
+end
+
+generate_seed_data_for_development if Rails.env.development?

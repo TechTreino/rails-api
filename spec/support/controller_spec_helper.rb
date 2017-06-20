@@ -6,9 +6,7 @@ module ControllerSpecHelper
   end
 
   def create_authenticated_user
-    user = FactoryGirl.create(:user)
-    user.confirm
-    user
+    FactoryGirl.create(:user)
   end
 
   def authenticate_user

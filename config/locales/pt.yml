@@ -1,3 +1,5 @@
 pt:
   record_not_found: 'Registro não encontrado'
   route_not_found: 'Rota não encontrada'
+  authorization:
+    forbidden: "%{first_name} com níveis de acesso %{roles} não possui acesso ao recurso %{action}"

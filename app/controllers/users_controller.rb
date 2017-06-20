@@ -2,7 +2,10 @@
 
 class UsersController < ApplicationController
   before_action :set_paper_trail_whodunnit
-  before_action :authenticate_user!
+
+  def should_authenticate_user?
+    true
+  end
 
   def index
     @view = OpenStruct.new(users: User.by_client.all)

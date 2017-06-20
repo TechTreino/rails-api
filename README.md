@@ -13,7 +13,7 @@ Techtreino-api is a rails API application
 
 * Setup
   * `bundle`
-  * `rails db:create db:schema:load db:migrate`
+  * `rails db:create db:schema:load db:migrate db:seed`
   * Start the application: `rails s`
 
 ## Development
