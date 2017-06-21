@@ -17,7 +17,7 @@ end
 def create_muscle_groups
   return if MuscleGroup.any?
 
-  %w(Peito Costas Ombro Bíceps Tríceps Lombar Abdômem Panturrilha Coxa Posterior Coxa Anterior).each do |name|
+  ['Peito', 'Costas', 'Ombro', 'Bíceps', 'Tríceps', 'Lombar', 'Abdômem', 'Panturrilha', 'Coxa Posterior', 'Coxa Anterior'].each do |name|
     MuscleGroup.create(name: name)
   end
 end
