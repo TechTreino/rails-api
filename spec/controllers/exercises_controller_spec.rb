@@ -65,7 +65,7 @@ RSpec.describe ExercisesController, type: :controller do
     let!(:params) { { id: exercise.id, exercise: { name: 'Supino', muscle_group_id: muscle_group_id } } }
 
     before { authenticate_user }
-    before { post :create, params: params, format: :json }
+    before { post :update, params: params, format: :json }
 
     it 'returns success' do
       expect(response).to have_http_status(:success)
@@ -75,6 +75,8 @@ RSpec.describe ExercisesController, type: :controller do
       expect(json_response).to have_key :exercise
       expect(json_response[:exercise][:name]).to eq('Supino')
       expect(json_response[:exercise]['muscleGroupId']).to eq(muscle_group_id)
+      expect(Exercise.count).to eq(1)
+      expect(Exercise.first.name).to eq('Supino')
     end
   end
 

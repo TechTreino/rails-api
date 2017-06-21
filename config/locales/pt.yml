@@ -3,3 +3,5 @@ pt:
   route_not_found: 'Rota não encontrada'
   authorization:
     forbidden: "%{first_name} com níveis de acesso %{roles} não possui acesso ao recurso %{action}"
+  registrations:
+    roles_not_allowed: "Níveis de acesso não permitidos. Os níveis de acesso permitidos para cadastro são: %{roles}"

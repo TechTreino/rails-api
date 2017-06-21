@@ -8,10 +8,16 @@ class User < ApplicationRecord
 
   strip_attributes
   has_paper_trail
-  # Include default devise modules.
   serialize :roles, Array
   validates :first_name, presence: true
   validates :last_name, presence: true
+  before_create :set_default_roles
 
   belongs_to :client
+
+  private
+
+  def set_default_roles
+    self.roles = [:customer] if roles.blank?
+  end
 end
