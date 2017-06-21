@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   root to: 'application#index'
 
   resources :users, only: %i[index show]
+  resources :exercises
 
   match '*', to: 'application#route_not_found', via: %i[get post put patch delete]
 end

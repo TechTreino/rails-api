@@ -34,14 +34,7 @@ While pairing you may want to use `git pair` for your commits, it requires insta
 
 ### Testing email in development
 
-2 options
-
-1. Use rspec preview, see `spec/mailers/previews`
-2. Use mailcatcher
- * `gem install mailcatcher`
- * Run it: `mailcatcher`
- * View emails at http://127.0.0.1:1080
- * Development environment is already configured to use mailcatcher for sending email
+Every email sent in developer env will open a tab in your browser, through `letter_opener`
 
 ## Deployment
 

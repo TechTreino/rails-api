@@ -2,7 +2,9 @@
 
 FactoryGirl.define do
   factory :exercise do
-    name 'Supino'
+    name { Faker::Lorem.word }
+
     muscle_group
+    client
   end
 end

@@ -32,13 +32,6 @@ module TechtreinoApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    config.middleware.insert_before 0, Rack::Cors do
-      allow do
-        origins '*'
-        resource '*', headers: :any, methods: %i[get post options put patch delete]
-      end
-    end
-
     # Use uuid instead of numeric ids
     config.generators do |g|
       g.orm :active_record, primary_key_type: :uuid

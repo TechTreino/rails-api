@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :muscle_group do
-    name 'Chest'
+    name { Faker::Lorem.word }
   end
 end

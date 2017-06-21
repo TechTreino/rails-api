@@ -6,6 +6,22 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+def generate_seed_data_for_all_environments
+  puts '  BEGIN: Generating seed data for all environments'
+
+  create_muscle_groups
+
+  puts '  END: Generating seed data for all environments'
+end
+
+def create_muscle_groups
+  return if MuscleGroup.any?
+
+  %w(Peito Costas Ombro Bíceps Tríceps Lombar Abdômem Panturrilha Coxa Posterior Coxa Anterior).each do |name|
+    MuscleGroup.create(name: name)
+  end
+end
+
 def generate_seed_data_for_development
   puts '  BEGIN: Generating seed data for development environments'
 
@@ -24,3 +40,4 @@ def generate_seed_data_for_development
 end
 
 generate_seed_data_for_development if Rails.env.development?
+generate_seed_data_for_all_environments unless Rails.env.test?
