@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe EndpointAuthorization do
   describe 'authorize!' do
     let(:current_user) { OpenStruct.new(roles: roles) }
@@ -29,6 +30,14 @@ RSpec.describe EndpointAuthorization do
 
       it 'returns true' do
         expect(described_class.authorize!('users', 'index', current_user)).to be_nil
+      end
+    end
+
+    context 'when the endpoint is authorized by anyone' do
+      let(:roles) { [] }
+
+      it 'returns true' do
+        expect(described_class.authorize!('application', 'index', current_user)).to be_nil
       end
     end
   end

@@ -19,7 +19,8 @@ class EndpointAuthorization
     %i[exercises show] => %i[client_admin customer],
     %i[exercises create] => [:client_admin],
     %i[exercises update] => [:client_admin],
-    %i[exercises destroy] => [:client_admin]
+    %i[exercises destroy] => [:client_admin],
+    %i[muscle_groups index] => %i[client_admin customer]
   }.freeze
 
   def self.authorize!(controller_name, action_name, current_user)
