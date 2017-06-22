@@ -13,14 +13,14 @@ class EndpointAuthorization
     %i[sessions destroy] => '*',
     %i[application index] => '*',
     %i[token_validations validate_token] => '*',
-    %i[users index] => [:client_admin],
-    %i[users show] => [:client_admin],
-    %i[exercises index] => %i[client_admin customer],
-    %i[exercises show] => %i[client_admin customer],
-    %i[exercises create] => [:client_admin],
-    %i[exercises update] => [:client_admin],
-    %i[exercises destroy] => [:client_admin],
-    %i[muscle_groups index] => %i[client_admin customer]
+    %i[users index] => %i[system_admin client_admin],
+    %i[users show] => %i[system_admin client_admin],
+    %i[exercises index] => %i[system_admin client_admin customer],
+    %i[exercises show] => %i[system_admin client_admin customer],
+    %i[exercises create] => %i[system_admin client_admin],
+    %i[exercises update] => %i[system_admin client_admin],
+    %i[exercises destroy] => %i[system_admin client_admin],
+    %i[muscle_groups index] => %i[system_admin client_admin customer]
   }.freeze
 
   def self.authorize!(controller_name, action_name, current_user)

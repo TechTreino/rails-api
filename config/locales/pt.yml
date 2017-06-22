@@ -1,7 +1,14 @@
 pt:
   record_not_found: 'Registro não encontrado'
   route_not_found: 'Rota não encontrada'
+  roles:
+    system_admin: 'Administrador do sistema'
+    client_admin: 'Administrador'
+    customer: 'Aluno'
   authorization:
     forbidden: "%{first_name} com níveis de acesso %{roles} não possui acesso ao recurso %{action}"
   registrations:
-    roles_not_allowed: "Níveis de acesso não permitidos. Os níveis de acesso permitidos para cadastro são: %{roles}"
+    roles_not_allowed: "Tipo de usuário não permitido. Os tipos de acesso permitidos para cadastro são: %{roles}"
+  sessions:
+    roles_not_allowed: "Tipo de usuário não permitido. Os tipos de usuário permitidos para login são: %{roles}"
+    user_role_not_allowed: "Você não possui acesso a este sistema. Favor entrar em contato com os administradores."
