@@ -6,5 +6,6 @@ FactoryGirl.define do
     address 'MyString'
     cnpj 'MyString'
     email { Faker::Internet.email }
+    slug { Faker::Internet.slug }
   end
 end

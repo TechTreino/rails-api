@@ -46,7 +46,7 @@ class SessionsController < DeviseTokenAuth::SessionsController
 
       @resource.tokens[@client_id] = {
         token: BCrypt::Password.create(@token),
-        expiry: (Time.now.iso8601 + DeviseTokenAuth.token_lifespan).to_i
+        expiry: (Time.now.utc + DeviseTokenAuth.token_lifespan).to_i
       }
       @resource.save
 
