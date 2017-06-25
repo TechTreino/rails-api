@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   before_create :set_default_roles
 
-  belongs_to :client
+  belongs_to :client, required: true
 
   private
 

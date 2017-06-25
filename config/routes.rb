@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   root to: 'application#index'
 
-  resources :users, only: %i[index show]
+  resources :users, only: %i[index show create]
   resources :exercises
   resources :muscle_groups, only: [:index]
 

@@ -2,6 +2,7 @@
 
 class EndpointAuthorization
   PERMISSIONS = {
+    %i[confirmations show] => '*',
     %i[passwords create] => '*',
     %i[passwords edit] => '*',
     %i[passwords update] => '*',
@@ -15,6 +16,7 @@ class EndpointAuthorization
     %i[token_validations validate_token] => '*',
     %i[users index] => %i[system_admin client_admin],
     %i[users show] => %i[system_admin client_admin],
+    %i[users create] => %i[system_admin client_admin],
     %i[exercises index] => %i[system_admin client_admin customer],
     %i[exercises show] => %i[system_admin client_admin customer],
     %i[exercises create] => %i[system_admin client_admin],

@@ -17,7 +17,7 @@ class ApplicationController < ActionController::API
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[email first_name last_name client_id roles])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[email password first_name last_name roles])
   end
 
   def set_current_user

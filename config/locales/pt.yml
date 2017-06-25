@@ -1,10 +1,10 @@
 pt:
-  record_not_found: 'Registro não encontrado'
-  route_not_found: 'Rota não encontrada'
+  record_not_found: "Registro não encontrado"
+  route_not_found: "Rota não encontrada"
   roles:
-    system_admin: 'Administrador do sistema'
-    client_admin: 'Administrador'
-    customer: 'Aluno'
+    system_admin: "Administrador do sistema"
+    client_admin: "Administrador"
+    customer: "Aluno"
   authorization:
     forbidden: "%{first_name} com níveis de acesso %{roles} não possui acesso ao recurso %{action}"
   registrations:
@@ -12,3 +12,9 @@ pt:
   sessions:
     roles_not_allowed: "Tipo de usuário não permitido. Os tipos de usuário permitidos para login são: %{roles}"
     user_role_not_allowed: "Você não possui acesso a este sistema. Favor entrar em contato com os administradores."
+  user_mailer:
+    welcome:
+      subject: "Bem vindo(a) ao TechTreino!"
+      salutation: "Bem vindo(a) ao TechTreino, %{name}!"
+      account_created: "Foi criada uma conta para você no TechTreino. Você possui uma senha inicial, que pode ser alterada qualquer momento no sistema."
+      reset_password_instructions: "Caso não lembre sua senha inicial, você pode solicitar uma redefinição neste link: "
