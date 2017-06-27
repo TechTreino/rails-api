@@ -8,9 +8,16 @@ class ApplicationController < ActionController::API
   before_action :set_paper_trail_whodunnit
   before_action :set_current_user
   before_action :authorize!
+
   rescue_from ActiveRecord::RecordNotFound, with: :response_for_record_not_found
   rescue_from ActionController::RoutingError, with: :response_for_route_not_found
   rescue_from Exceptions::ForbiddenError, with: :response_for_forbidden
+
+  def index
+    render plain: 'Techtreino API'
+  end
+
+  protected
 
   def user_for_paper_trail
     current_user
@@ -42,9 +49,5 @@ class ApplicationController < ActionController::API
 
   def should_authenticate_user?
     false
-  end
-
-  def index
-    render plain: 'Techtreino API'
   end
 end
