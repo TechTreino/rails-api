@@ -13,7 +13,11 @@ Rails.application.routes.draw do
 
   root to: 'application#index'
 
-  resources :users, only: %i[index show create]
+  resources :users, only: %i[index show create] do
+    collection do
+      get 'customers'
+    end
+  end
   resources :exercises
   resources :muscle_groups, only: [:index]
 

@@ -24,6 +24,26 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  describe 'customers' do
+    before { create_list(:user, 2, client: current_user.client) { |user| user.roles = [Role.customer] } }
+    before { get :customers, format: :json }
+
+    it 'returns success' do
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'contains the data' do
+      expect(json_response).to have_key :users
+      expect(json_response[:users].length).to eq 2
+    end
+
+    it "only returns users scoped to current user's client_id" do
+      create(:user)
+      expect(json_response).to have_key :users
+      expect(json_response[:users].length).to eq 2
+    end
+  end
+
   describe 'show' do
     let!(:users) { create_list(:user, 2, client: current_user.client) }
     let!(:user_id) { users.first.id }

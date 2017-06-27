@@ -5,7 +5,12 @@ class UsersController < ApplicationController
   before_action :set_paper_trail_whodunnit
 
   def index
-    @view = OpenStruct.new(users: User.by_client.all)
+    @view = OpenStruct.new(users: User.by_client)
+  end
+
+  def customers
+    customers = User.by_client.joins(:user_roles).where(user_roles: { role_id: Role.customer.id })
+    @view = OpenStruct.new(customers: customers)
   end
 
   def show
