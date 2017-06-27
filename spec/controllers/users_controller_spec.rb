@@ -33,14 +33,14 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it 'contains the data' do
-      expect(json_response).to have_key :users
-      expect(json_response[:users].length).to eq 2
+      expect(json_response).to have_key :customers
+      expect(json_response[:customers].length).to eq 2
     end
 
     it "only returns customers scoped to current user's client_id" do
       create(:user)
-      expect(json_response).to have_key :users
-      expect(json_response[:users].length).to eq 2
+      expect(json_response).to have_key :customers
+      expect(json_response[:customers].length).to eq 2
     end
   end
 
