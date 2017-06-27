@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SessionsController < DeviseTokenAuth::SessionsController
-  ACCEPTED_SIGN_IN_ROLES = %i[client_admin customer].freeze
+  ACCEPTED_SIGN_IN_ROLES = %w[system_admin client_admin customer].freeze
 
   def create
     if valid_roles_params?
@@ -17,7 +17,7 @@ class SessionsController < DeviseTokenAuth::SessionsController
   protected
 
   def valid_roles_params?
-    params[:roles].present? && params[:roles].map(&:to_sym).all? { |role| ACCEPTED_SIGN_IN_ROLES.include?(role) }
+    params[:roles].present? && (params[:roles] & ACCEPTED_SIGN_IN_ROLES).any?
   end
 
   # rubocop:disable Metrics/MethodLength
@@ -86,8 +86,8 @@ class SessionsController < DeviseTokenAuth::SessionsController
   end
 
   def roles_are_accepted?(resource)
-    resource.roles.map(&:to_sym).any? do |role|
-      role == :system_admin || params[:roles].map(&:to_sym).include?(role)
+    resource.roles.any? do |role|
+      role == Role.system_admin || params[:roles].include?(role.name)
     end
   end
 

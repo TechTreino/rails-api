@@ -10,6 +10,7 @@ def generate_seed_data_for_all_environments
   puts '  BEGIN: Generating seed data for all environments'
 
   create_muscle_groups
+  create_roles
 
   puts '  END: Generating seed data for all environments'
 end
@@ -22,6 +23,12 @@ def create_muscle_groups
   end
 end
 
+def create_roles
+  return if Role.any?
+
+  %w[system_admin client_admin customer].each { |name| Role.create(name: name) }
+end
+
 def generate_seed_data_for_development
   puts '  BEGIN: Generating seed data for development environments'
 
@@ -32,12 +39,12 @@ def generate_seed_data_for_development
     last_name: 'Cabuloso',
     email: 'admin@techtreino.com',
     password: '123456',
-    roles: [:client_admin, :system_admin],
+    roles: [Role.system_admin, Role.client_admin],
     client: Client.order(:created_at).first
   ) unless User.any?
 
   puts '  END: Generating seed data for development environments'
 end
 
-generate_seed_data_for_development if Rails.env.development?
 generate_seed_data_for_all_environments unless Rails.env.test?
+generate_seed_data_for_development if Rails.env.development?

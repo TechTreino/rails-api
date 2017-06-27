@@ -14,22 +14,23 @@ class EndpointAuthorization
     %i[sessions destroy] => '*',
     %i[application index] => '*',
     %i[token_validations validate_token] => '*',
-    %i[users index] => %i[system_admin client_admin],
-    %i[users show] => %i[system_admin client_admin],
-    %i[users create] => %i[system_admin client_admin],
-    %i[exercises index] => %i[system_admin client_admin customer],
-    %i[exercises show] => %i[system_admin client_admin customer],
-    %i[exercises create] => %i[system_admin client_admin],
-    %i[exercises update] => %i[system_admin client_admin],
-    %i[exercises destroy] => %i[system_admin client_admin],
-    %i[muscle_groups index] => %i[system_admin client_admin customer]
+    %i[users index] => %w[system_admin client_admin],
+    %i[users customers] => %w[system_admin client_admin],
+    %i[users show] => %w[system_admin client_admin],
+    %i[users create] => %w[system_admin client_admin],
+    %i[exercises index] => %w[system_admin client_admin customer],
+    %i[exercises show] => %w[system_admin client_admin customer],
+    %i[exercises create] => %w[system_admin client_admin],
+    %i[exercises update] => %w[system_admin client_admin],
+    %i[exercises destroy] => %w[system_admin client_admin],
+    %i[muscle_groups index] => %w[system_admin client_admin customer]
   }.freeze
 
   def self.authorize!(controller_name, action_name, current_user)
     permission = [PERMISSIONS[[controller_name.to_sym, action_name.to_sym]]].flatten
     return if permission == '*' || permission.first == '*'
 
-    is_authorized = (permission & current_user.roles.map(&:to_sym)).any?
+    is_authorized = (permission & current_user.roles.map(&:name)).any?
 
     forbidden_error!(controller_name, action_name, current_user) unless is_authorized
   end
@@ -38,7 +39,7 @@ class EndpointAuthorization
     message = I18n.t(
       'authorization.forbidden',
       first_name: current_user.first_name,
-      roles: current_user.roles,
+      roles: current_user.roles.map(&:name),
       action: "#{controller_name}/#{action_name}"
     )
 

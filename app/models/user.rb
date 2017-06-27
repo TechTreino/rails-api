@@ -8,7 +8,8 @@ class User < ApplicationRecord
 
   strip_attributes
   has_paper_trail
-  serialize :roles, Array
+  has_many :user_roles
+  has_many :roles, through: :user_roles
   validates :first_name, presence: true
   validates :last_name, presence: true
   before_create :set_default_roles
@@ -18,6 +19,6 @@ class User < ApplicationRecord
   private
 
   def set_default_roles
-    self.roles = [:customer] if roles.blank?
+    self.roles = [Role.customer] if roles.blank?
   end
 end
