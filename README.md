@@ -1,5 +1,6 @@
 # techtreino-api
 [![CircleCI](https://circleci.com/gh/TechTreino/rails-api.svg?style=svg)](https://circleci.com/gh/TechTreino/rails-api)
+[![Code Climate](https://codeclimate.com/github/TechTreino/rails-api/badges/gpa.svg)](https://codeclimate.com/github/TechTreino/rails-api)
 
 Techtreino-api is a rails API application
 

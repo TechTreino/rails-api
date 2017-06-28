@@ -37,6 +37,7 @@ jobs:
                             --out /tmp/test-results/rspec.xml \
                             --format progress \
                             $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+          bundle exec codeclimate-test-reporter
 
       - run: bash .circleci/setup-heroku.sh
 
