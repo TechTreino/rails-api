@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   end
   resources :exercises
   resources :muscle_groups, only: [:index]
+  resources :workouts
 
   match '*', to: 'application#route_not_found', via: %i[get post put patch delete]
 end

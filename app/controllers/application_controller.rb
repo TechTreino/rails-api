@@ -50,4 +50,8 @@ class ApplicationController < ActionController::API
   def should_authenticate_user?
     false
   end
+
+  def render_validation_errors(model)
+    render json: { errors: model.errors }, status: :unprocessable_entity
+  end
 end
