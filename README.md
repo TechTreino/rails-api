@@ -51,4 +51,6 @@ Deployment is handled automatically by CI, which pushes everything to heroku and
   * Required for production environment
 * CLIENT_URL
   * Required for production environment
+* SENTRY_DSN
+  * Required for production environment
 

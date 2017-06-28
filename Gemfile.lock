@@ -66,6 +66,8 @@ GEM
       railties (>= 3.0.0)
     faker (1.7.2)
       i18n (~> 0.5)
+    faraday (0.12.1)
+      multipart-post (>= 1.2, < 3)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     hashie (3.5.5)
@@ -89,6 +91,7 @@ GEM
     mini_portile2 (2.2.0)
     minitest (5.10.2)
     multi_json (1.12.1)
+    multipart-post (2.0.0)
     nio4r (2.1.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
@@ -140,8 +143,6 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
-    rollbar (2.15.0)
-      multi_json
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -170,6 +171,8 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
+    sentry-raven (2.5.3)
+      faraday (>= 0.7.6, < 1.0)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
     simplecov (0.13.0)
@@ -217,10 +220,10 @@ DEPENDENCIES
   puma (~> 3.7)
   rack-cors
   rails (~> 5.1.1)
-  rollbar
   rspec-rails
   rspec_junit_formatter
   rubocop
+  sentry-raven
   shoulda-matchers
   simplecov
   spring

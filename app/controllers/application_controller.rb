@@ -8,6 +8,7 @@ class ApplicationController < ActionController::API
   before_action :set_paper_trail_whodunnit
   before_action :set_current_user
   before_action :authorize!
+  before_action :set_raven_context
 
   rescue_from ActiveRecord::RecordNotFound, with: :response_for_record_not_found
   rescue_from ActionController::RoutingError, with: :response_for_route_not_found
@@ -45,6 +46,13 @@ class ApplicationController < ActionController::API
 
   def authorize!
     EndpointAuthorization.authorize!(controller_name, action_name, current_user)
+  end
+
+  def set_raven_context
+    Raven.extra_context(params: params.to_unsafe_h, url: request.url)
+
+    return unless current_user
+    Raven.user_context(id: current_user.id, email: current_user.email, first_name: current_user.first_name)
   end
 
   def should_authenticate_user?

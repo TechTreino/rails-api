@@ -21,7 +21,7 @@ gem 'strip_attributes'
 gem 'paper_trail'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
-gem 'rollbar'
+gem "sentry-raven"
 
 gem 'rubocop', require: false
 
