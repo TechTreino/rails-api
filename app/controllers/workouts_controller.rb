@@ -55,7 +55,7 @@ class WorkoutsController < ApplicationController
       if workout_exercise
         workout_exercise.update!(workout_exercise_params(workout_exercise_data))
       else
-        workout_exercise ||= WorkoutExercise.create(workout_exercise_params(workout_exercise_data))
+        workout_exercise ||= WorkoutExercise.new(workout_exercise_params(workout_exercise_data))
       end
 
       workout_exercise
