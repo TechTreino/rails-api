@@ -65,8 +65,8 @@ RSpec.describe WorkoutsController, type: :controller do
       expect(json_response).to have_key :workout
       expect(Workout.count).to eq(1)
       expect(json_response[:workout][:id]).to eq(Workout.first.id)
-      expect(json_response[:workout]).to have_key 'workoutExercises'
-      expect(json_response[:workout]['workoutExercises'].length).to eq(2)
+      expect(json_response[:workout]).to have_key :workout_exercises
+      expect(json_response[:workout][:workout_exercises].length).to eq(2)
     end
   end
 
@@ -98,9 +98,9 @@ RSpec.describe WorkoutsController, type: :controller do
       expect(Workout.count).to eq(1)
       expect(json_response[:workout][:id]).to eq(workout.id)
       expect(json_response[:workout][:name]).to eq('AB')
-      expect(json_response[:workout]['userId']).to eq(user.id)
-      expect(json_response[:workout]).to have_key 'workoutExercises'
-      expect(json_response[:workout]['workoutExercises'].length).to eq(2)
+      expect(json_response[:workout][:user_id]).to eq(user.id)
+      expect(json_response[:workout]).to have_key :workout_exercises
+      expect(json_response[:workout][:workout_exercises].length).to eq(2)
     end
 
     describe 'updating available workout exercises' do
@@ -119,12 +119,12 @@ RSpec.describe WorkoutsController, type: :controller do
         expect(Workout.count).to eq(1)
         expect(WorkoutExercise.count).to eq(2)
         expect(json_response[:workout][:id]).to eq(workout.id)
-        expect(json_response[:workout]).to have_key 'workoutExercises'
-        expect(json_response[:workout]['workoutExercises'].length).to eq(2)
-        expect(json_response[:workout]['workoutExercises'][0][:sets]).to eq(2)
-        expect(json_response[:workout]['workoutExercises'][0][:repetitions]).to eq(12)
-        expect(json_response[:workout]['workoutExercises'][1][:sets]).to eq(3)
-        expect(json_response[:workout]['workoutExercises'][1][:repetitions]).to eq(9)
+        expect(json_response[:workout]).to have_key :workout_exercises
+        expect(json_response[:workout][:workout_exercises].length).to eq(2)
+        expect(json_response[:workout][:workout_exercises][0][:sets]).to eq(2)
+        expect(json_response[:workout][:workout_exercises][0][:repetitions]).to eq(12)
+        expect(json_response[:workout][:workout_exercises][1][:sets]).to eq(3)
+        expect(json_response[:workout][:workout_exercises][1][:repetitions]).to eq(9)
       end
     end
   end

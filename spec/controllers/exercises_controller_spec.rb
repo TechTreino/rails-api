@@ -57,6 +57,19 @@ RSpec.describe ExercisesController, type: :controller do
       expect(Exercise.count).to eq(1)
       expect(json_response[:exercise][:id]).to eq(Exercise.first.id)
     end
+
+    context 'when there are validation errors' do
+      let(:params) { { exercise: { muscle_group_id: '-42' } } }
+
+      it 'returns unprocessable entity' do
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it 'returns the errors' do
+        expect(json_response).to have_key :errors
+        expect(json_response[:errors]).to have_key :name
+      end
+    end
   end
 
   describe 'update' do
@@ -74,9 +87,23 @@ RSpec.describe ExercisesController, type: :controller do
     it 'updates the exercise' do
       expect(json_response).to have_key :exercise
       expect(json_response[:exercise][:name]).to eq('Supino')
-      expect(json_response[:exercise]['muscleGroupId']).to eq(muscle_group_id)
+      expect(json_response[:exercise][:muscle_group_id]).to eq(muscle_group_id)
       expect(Exercise.count).to eq(1)
       expect(Exercise.first.name).to eq('Supino')
+    end
+
+    context 'when there are validation errors' do
+      let(:params) { { id: exercise.id, exercise: { muscle_group_id: '-42' } } }
+
+      it 'returns unprocessable entity' do
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it 'returns the errors' do
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(json_response).to have_key :errors
+        expect(json_response[:errors]).to have_key :muscle_group
+      end
     end
   end
 

@@ -2,39 +2,46 @@
 
 class ExercisesController < ApplicationController
   include Authenticable
+  before_action :set_exercise, only: %i[show update destroy]
 
   def index
     @view = OpenStruct.new(exercises: Exercise.by_client.all)
   end
 
   def show
-    @exercise = Exercise.by_client.find(params[:id])
-
-    exercise_show
+    render_show_exercise
   end
 
   def create
-    @exercise = Exercise.create!(exercise_params.merge(client_id: current_user.client.id))
+    @exercise = Exercise.new(exercise_params.merge(client_id: current_user.client.id))
 
-    exercise_show
+    if @exercise.save
+      render_show_exercise
+    else
+      render_validation_errors(@exercise)
+    end
   end
 
   def update
-    @exercise = Exercise.by_client.find(params[:id])
-    @exercise.update!(exercise_params)
-    exercise_show
+    if @exercise.update(exercise_params)
+      render_show_exercise
+    else
+      render_validation_errors(@exercise)
+    end
   end
 
   def destroy
-    @exercise = Exercise.by_client.find(params[:id])
-
     @exercise.destroy
     render body: nil, status: :no_content
   end
 
   private
 
-  def exercise_show
+  def set_exercise
+    @exercise = Exercise.by_client.find(params[:id])
+  end
+
+  def render_show_exercise
     @view = OpenStruct.new(exercise: @exercise)
 
     render :show

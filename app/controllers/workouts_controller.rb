@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class WorkoutsController < ApplicationController
+  include Authenticable
   before_action :set_workout, only: %i[show update destroy]
 
   def index
@@ -8,7 +9,7 @@ class WorkoutsController < ApplicationController
   end
 
   def show
-    @view = OpenStruct.new(workout: @workout)
+    render_show_workout
   end
 
   def create
@@ -16,7 +17,7 @@ class WorkoutsController < ApplicationController
     set_workout_exercises
 
     if @workout.save
-      @view = OpenStruct.new(workout: @workout)
+      render_show_workout
     else
       render_validation_errors(@workout)
     end
@@ -26,7 +27,7 @@ class WorkoutsController < ApplicationController
     set_workout_exercises
 
     if @workout.update(workout_params)
-      @view = OpenStruct.new(workout: @workout)
+      render_show_workout
     else
       render_validation_errors(@workout)
     end
@@ -41,6 +42,10 @@ class WorkoutsController < ApplicationController
 
   def set_workout
     @workout = Workout.by_client.find(params[:id])
+  end
+
+  def render_show_workout
+    @view = OpenStruct.new(workout: @workout)
   end
 
   def workout_params

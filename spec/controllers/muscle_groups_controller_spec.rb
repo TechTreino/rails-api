@@ -12,8 +12,8 @@ RSpec.describe MuscleGroupsController, type: :controller do
     end
 
     it 'contains the data' do
-      expect(json_response).to have_key 'muscleGroups'
-      expect(json_response['muscleGroups'].length).to eq 2
+      expect(json_response).to have_key :muscle_groups
+      expect(json_response[:muscle_groups].length).to eq 2
     end
   end
 end
