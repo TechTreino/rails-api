@@ -5,6 +5,6 @@ module ScopedToClient
   extend ActiveSupport::Concern
 
   included do
-    scope :by_client, -> { where(client: RequestStore.store[:current_user].client) }
+    scope :by_client, -> { where(client_id: RequestStore.store[:current_user].client_id) }
   end
 end
